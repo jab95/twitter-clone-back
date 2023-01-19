@@ -16,8 +16,8 @@ appDatabase.initDatabase();
 
     const options =
     {
-        key: fs.readFileSync("certificados/private.pem", "utf8"),
-        cert: fs.readFileSync("certificados/myCA.pem", "utf8"),
+        key: fs.readFileSync("./certificados/private.pem", "utf8"),
+        cert: fs.readFileSync("./certificados/myCA.pem", "utf8"),
         requestCert: false,
         rejectUnauthorized: false,
         secureOptions: require("constants").SSL_OP_NO_SSLv3 | require("constants").SSL_OP_NO_TLSv1,

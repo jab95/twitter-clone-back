@@ -25,6 +25,7 @@ appDatabase.initDatabase();
     }
 
 
+
     await http.createServer(app, options).listen(PORT, () => {
         console.log("listening ", process.env.PORT)
     })

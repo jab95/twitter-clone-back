@@ -11,7 +11,7 @@ router.get("/get", async (req, res) => {
 router.post("/add", async (req, res, next) => {
 
 
-    let usuario = await userManager.createUser(req.body.usuario, req.body.pass);
+    let usuario = await userManager.createUser(req.body.user, req.body.pass);
     res.status(200).json(usuario)
 })
 module.exports = router

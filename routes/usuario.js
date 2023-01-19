@@ -8,13 +8,6 @@ router.get("/get", async (req, res) => {
     res.status(200).json(usuario)
 })
 
-router.get("/get2", async (req, res) => {
-
-    res.status(200).json("ss")
-})
-
-
-
 router.post("/add", async (req, res, next) => {
 
 

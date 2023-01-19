@@ -3,26 +3,26 @@ const _ = require("lodash")
 
 
 
-let createUser = async (user,pass)=>{
+let createUser = async (user, pass) => {
 
     let usuario = new Usuario({
         user: user,
-        pass :pass  
-    
+        pass: pass
+
     });
-    
-   return await usuario.save()
+
+    return await usuario.save()
 }
 
-let getUser = (user,pass)=>{
+let getUser = (user, pass) => {
 
-    return Usuario.findOne({"user":user,"pass":pass})
+    return Usuario.findOne({ "user": user, "pass": pass })
 
 }
 
 
 module.exports = {
-    createUser:createUser,
-    getUser:getUser,
+    createUser,
+    getUser,
 }
 

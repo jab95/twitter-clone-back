@@ -1,15 +1,16 @@
 const usuarioRoutes = require("../../routes/usuario")
+const tweetRoutes = require("../../routes/tweet")
 const cors = require("cors");
 const helmet = require("helmet")
 
-module.exports = (express,app)=>{
+module.exports = (express, app) => {
 
     const corsOption = {
-        origin:true,
-        methods: ["GET","PUT","POST","DELETE"],
-        allowedHeaders: ["Origin","X-Requested-With","Content-Type","Accept","content-type","authorization"],
-        credentials:true,
-        maxAge:600
+        origin: true,
+        methods: ["GET", "PUT", "POST", "DELETE"],
+        allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "content-type", "authorization"],
+        credentials: true,
+        maxAge: 600
     }
 
     app.use(helmet())
@@ -18,11 +19,12 @@ module.exports = (express,app)=>{
     // app.use(cors())
 
     app.use(express.json())
-    app.use(express.urlencoded({extended:true}))
+    app.use(express.urlencoded({ extended: true }))
 
-    app.use("/usuario",usuarioRoutes)
+    app.use("/usuario", usuarioRoutes)
+    app.use("/tweet", tweetRoutes)
 
-   
-   
+
+
 
 }

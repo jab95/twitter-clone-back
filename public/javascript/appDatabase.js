@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const config = require('../../config/config');
 
-const initDatabase = async() =>{
+const initDatabase = async () => {
 
     await mongoose.connect(config.DB_HOST);
     console.log("conexion establecida")
@@ -9,5 +9,5 @@ const initDatabase = async() =>{
 }
 
 module.exports = {
-    initDatabase:initDatabase
+    initDatabase: initDatabase
 }

@@ -13,6 +13,7 @@ const createTweet = async (texto, foto, usuario) => {
     });
 
     return await tweet.save()
+
 }
 const getTweets = async (page) => {
 

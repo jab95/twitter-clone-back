@@ -15,7 +15,7 @@ module.exports = (express, app) => {
 
     app.use(helmet())
     // todo esto siempre antes que las rutas
-    app.use(cors(corsOption))
+    app.use(cors())
     // app.use(cors())
 
     app.use(express.json())

@@ -14,6 +14,7 @@ appDatabase.initDatabase();
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express, app);
 
+
     const options =
     {
         key: fs.readFileSync("./certificados/private.pem", "utf8"),

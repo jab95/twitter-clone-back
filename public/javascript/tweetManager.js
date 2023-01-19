@@ -1,6 +1,6 @@
 const Usuario = require("../../models/Usuario").Usuario
 const _ = require("lodash");
-const Tweet = require("../../models/tweet").Tweet;
+const Tweet = require("../../models/Tweet").Tweet;
 
 
 

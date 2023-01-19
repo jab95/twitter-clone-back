@@ -12,7 +12,6 @@ router.post("/add", async (req, res, next) => {
 router.get("/getTweets", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweets(req.query.page);
-    console.log(tweets)
     res.status(200).json(tweets)
 })
 module.exports = router

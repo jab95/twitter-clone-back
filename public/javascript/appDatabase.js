@@ -1,11 +1,9 @@
 const mongoose = require("mongoose")
-const dotenv = require("dotenv")
-dotenv.config()
-const config = require("config")
+const config = require("./../../config/config")
 
 const initDatabase = async () => {
 
-    await mongoose.connect(config.get("db"));
+    await mongoose.connect(config.DB_HOST);
     console.log("conexion establecida")
     return;
 }

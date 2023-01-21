@@ -15,7 +15,7 @@ appDatabase.initDatabase();
 
     app.all('/*', function (req, res, next) {
         // Just send the index.html for other files to support HTML5Mode
-        res.sendFile('index.html', { root: __dirname });
+        res.sendFile('index.html', { root: "/" });
     });
 
     //el await aqui no se si haria falta

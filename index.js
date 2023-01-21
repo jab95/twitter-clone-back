@@ -2,11 +2,14 @@
 const express = require('express');
 const path = require("path")
 const app = express();
+const dotenv = require("dotenv");
+dotenv.config()
+const config = require('config');
 const PORT = process.env.PORT || 3000;
 const appDatabase = require("./public/javascript/appDatabase");
 appDatabase.initDatabase();
 
-
+console.log(config.get("db"));
 
 (async function () {
     console.log(__dirname)

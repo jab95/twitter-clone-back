@@ -12,7 +12,8 @@ const createTweet = async (texto, foto, usuario) => {
         usuario: usuario
     });
 
-    return await tweet.save()
+    const file = await tweet.save()
+    return file
 
 }
 const getTweets = async (page) => {

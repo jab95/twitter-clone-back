@@ -1,5 +1,6 @@
 
 const express = require('express');
+const path = require("path")
 const app = express();
 const PORT = process.env.PORT || 3000;
 const appDatabase = require("./public/javascript/appDatabase");
@@ -8,8 +9,8 @@ appDatabase.initDatabase();
 
 
 (async function () {
-
-    app.use("/images", express.static("images"))
+    console.log(__dirname)
+    app.use("/images", express.static(path.resolve(__dirname, 'images')))
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express, app);
 

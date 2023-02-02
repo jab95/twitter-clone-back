@@ -7,6 +7,10 @@ let TweetSchema = mongoose.Schema({
     foto: String,
     usuario: {
         type: Object,
+    },
+    fecha: {
+        type: Date,
+        default: Date.now
     }
 });
 TweetSchema.plugin(mongoosePaginate)

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const tweetManager = require("../public/javascript/tweetManager");
+const _ = require("lodash")
 
 const multer = require("multer")
 var storage = multer.diskStorage({
@@ -33,8 +34,32 @@ router.post("/addImageTweet", upload.single("image"), async (req, res, next) => 
 router.get("/getTweets", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweets(req.query.page);
+
     res.status(200).json(tweets)
 })
+
+router.get("/getTweetsBeforeDate", async (req, res, next) => {
+
+
+    let tweets = await tweetManager.getTweetsBeforeDate(req.query.fecha);
+    res.status(200).json(tweets)
+})
+
+router.get("/getTweetsAfterDate", async (req, res, next) => {
+
+
+    let tweets = await tweetManager.getTweetsAfterDate(req.query.fecha);
+    res.status(200).json(tweets)
+})
+
+router.get("/getCountTweets", async (req, res, next) => {
+
+
+    let tweets = await tweetManager.getCountTweets();
+    res.status(200).json(tweets)
+})
+
+
 
 
 

@@ -22,10 +22,42 @@ const getTweets = async (page) => {
     const options = {
         page: Number(page),
         limit: Number(4),
+        sort: { fecha: -1 }
     }
 
     return Tweet.paginate({}, options);
 }
+
+const getTweetsBeforeDate = async (fechaBefore) => {
+
+    return await Tweet.find({ fecha: { $lt: new Date(fechaBefore).toISOString() } }).limit(4).sort({ fecha: -1 }).exec();
+}
+
+const getTweetsAfterDate = async (fechaAfter) => {
+
+
+    let fechaAfterLocal
+
+
+    if (fechaAfter == "undefined") {
+        fechaAfterLocal = new Date()
+    } else {
+        fechaAfterLocal = new Date(fechaAfter)
+
+    }
+
+    return await Tweet.find({ fecha: { $gt: fechaAfterLocal.toISOString() } }).limit(4).sort({ fecha: -1 }).exec();
+
+}
+
+const getCountTweets = async () => {
+
+    return await Tweet.count();
+
+}
+
+
+
 
 
 
@@ -33,5 +65,8 @@ const getTweets = async (page) => {
 module.exports = {
     createTweet: createTweet,
     getTweets: getTweets,
+    getTweetsBeforeDate: getTweetsBeforeDate,
+    getTweetsAfterDate: getTweetsAfterDate,
+    getCountTweets: getCountTweets
 }
 

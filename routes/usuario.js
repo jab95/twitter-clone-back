@@ -45,6 +45,15 @@ router.put("/changeUsername", async (req, res, next) => {
     res.status(200).json(usuario)
 })
 
+router.put("/changeDescription", async (req, res, next) => {
+
+    let usuario = await userManager.changeDescription(req.body.user, req.body.descripcion);
+    res.status(200).json(usuario)
+})
+
+
+
+
 router.put("/changeProfile", async (req, res, next) => {
 
     let usuario = await userManager.changeProfile(req.body.user, req.body.newProfile);

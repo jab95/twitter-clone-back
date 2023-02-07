@@ -4,7 +4,8 @@ let UserSchema = mongoose.Schema({
 
     user: String,
     pass: String,
-    fotoPerfil: String
+    fotoPerfil: String,
+    descripcion: String
 });
 
 const Usuario = mongoose.model("Usuario", UserSchema);

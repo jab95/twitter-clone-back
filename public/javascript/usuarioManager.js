@@ -36,6 +36,16 @@ let changeUsername = async (userOld, userNew) => {
     return await a.save()
 }
 
+let changeDescription = async (user, description) => {
+
+    const a = await Usuario.findOne({ "user": user }).exec()
+    a.descripcion = description
+    return await a.save()
+}
+
+
+
+
 let changeProfile = async (user, newProfile) => {
 
     const a = await Usuario.findOne({ "user": user }).exec()
@@ -51,6 +61,7 @@ module.exports = {
     getUser,
     changeUsername,
     getUserByName,
-    changeProfile
+    changeProfile,
+    changeDescription
 }
 

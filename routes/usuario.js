@@ -33,6 +33,13 @@ router.get("/getByName", async (req, res) => {
     let usuario = await userManager.getUserByName(req.query.user);
     res.status(200).json(usuario)
 })
+
+router.get("/getFiltersByName", async (req, res) => {
+
+    let usuario = await userManager.getFiltersByName(req.query.user);
+    res.status(200).json(usuario)
+})
+
 router.post("/add", async (req, res, next) => {
 
     let usuario = await userManager.createUser(req.body.user, req.body.pass);

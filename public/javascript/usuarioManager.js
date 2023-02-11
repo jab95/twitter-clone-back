@@ -22,6 +22,12 @@ let getUser = (user, pass) => {
 
 }
 
+let getFiltersByName = (user) => {
+
+    return Usuario.find({ "user": { $regex: user } })
+
+}
+
 let getUserByName = (user) => {
 
     return Usuario.findOne({ "user": user })
@@ -62,6 +68,7 @@ module.exports = {
     changeUsername,
     getUserByName,
     changeProfile,
-    changeDescription
+    changeDescription,
+    getFiltersByName
 }
 

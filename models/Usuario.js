@@ -5,6 +5,7 @@ let UserSchema = mongoose.Schema({
     user: String,
     pass: String,
     fotoPerfil: String,
+    fotoCabecera: String,
     descripcion: String
 });
 

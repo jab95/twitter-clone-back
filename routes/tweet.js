@@ -42,7 +42,6 @@ router.get("/getTweetsByProfile", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweetsByProfile(req.query.user, req.query.page);
 
-    console.log(tweets)
     res.status(200).json(tweets)
 })
 

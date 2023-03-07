@@ -4,7 +4,7 @@ const userManager = require("../public/javascript/usuarioManager");
 const path = require("path")
 
 const multer = require("multer")
-var storage = multer.diskStorage({
+var storageProfile = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "images/profiles")
     },
@@ -14,13 +14,26 @@ var storage = multer.diskStorage({
     }
 })
 
+var storageHeader = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "images/headers")
+    },
+    filename: (req, file, cb) => {
+        const fileName = file.originalname
+        cb(null, fileName)
+    }
+})
+
+
+
 
 const fileFilter = (req, file, cb) => {
     const allowedMimeTypes = ["image/png", "image/jpg", "image/jpeg"]
     allowedMimeTypes.includes(file.mimetype) ? cb(null, true) : cb(null, false)
 }
 
-const upload = multer({ storage: storage, fileFilter: fileFilter })
+const uploadProfiles = multer({ storage: storageProfile, fileFilter: fileFilter })
+const uploadHeaders = multer({ storage: storageHeader, fileFilter: fileFilter })
 
 router.get("/get", async (req, res) => {
 
@@ -31,6 +44,7 @@ router.get("/get", async (req, res) => {
 router.get("/getByName", async (req, res) => {
 
     let usuario = await userManager.getUserByName(req.query.user);
+
     res.status(200).json(usuario)
 })
 
@@ -42,7 +56,7 @@ router.get("/getFiltersByName", async (req, res) => {
 
 router.post("/add", async (req, res, next) => {
 
-    let usuario = await userManager.createUser(req.body.user, req.body.pass);
+    let usuario = await userManager.createUser(req.body.user, req.body.pass, req.body.fotoPerfil, req.body.fotoCabecera);
     res.status(200).json(usuario)
 })
 
@@ -58,21 +72,28 @@ router.put("/changeDescription", async (req, res, next) => {
     res.status(200).json(usuario)
 })
 
-
-
-
 router.put("/changeProfile", async (req, res, next) => {
 
     let usuario = await userManager.changeProfile(req.body.user, req.body.newProfile);
     res.status(200).json(usuario)
 })
 
-router.post("/addImageProfile", upload.single("image"), async (req, res, next) => {
+router.put("/changeHeader", async (req, res, next) => {
+
+    let usuario = await userManager.changeHeader(req.body.user, req.body.newHeader);
+    res.status(200).json(usuario)
+})
+
+
+router.post("/addImageProfile", uploadProfiles.single("image"), async (req, res, next) => {
 
     res.status(200).json("Imagen adjuntada")
 })
 
+router.post("/addImageHeader", uploadHeaders.single("image"), async (req, res, next) => {
 
-
+    console.log("aa")
+    res.status(200).json("Imagen adjuntada")
+})
 
 module.exports = router

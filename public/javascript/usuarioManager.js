@@ -4,12 +4,13 @@ const { Tweet } = require("../../models/Tweet");
 
 
 
-let createUser = async (user, pass) => {
+let createUser = async (user, pass, fotoPerfil, fotoCabecera) => {
 
     let usuario = new Usuario({
         user: user,
         pass: pass,
-        fotoPerfil: "profile-default",
+        fotoPerfil: fotoPerfil,
+        fotoCabecera: fotoCabecera,
 
     });
 
@@ -49,13 +50,17 @@ let changeDescription = async (user, description) => {
     return await a.save()
 }
 
-
-
-
 let changeProfile = async (user, newProfile) => {
 
     const a = await Usuario.findOne({ "user": user }).exec()
     a.fotoPerfil = newProfile
+    return await a.save()
+}
+
+let changeHeader = async (user, newHeader) => {
+
+    const a = await Usuario.findOne({ "user": user }).exec()
+    a.fotoCabecera = newHeader
     return await a.save()
 }
 
@@ -69,6 +74,7 @@ module.exports = {
     getUserByName,
     changeProfile,
     changeDescription,
-    getFiltersByName
+    getFiltersByName,
+    changeHeader
 }
 

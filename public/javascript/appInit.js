@@ -31,8 +31,8 @@ module.exports = (express, app) => {
     app.use(express.urlencoded({ extended: true }));
 
 
-    app.use("/api/usuario", usuarioRoutes)
-    app.use("/api/tweet", tweetRoutes)
+    app.use("/usuario", usuarioRoutes)
+    app.use("/tweet", tweetRoutes)
 
 
 

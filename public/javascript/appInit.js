@@ -16,9 +16,12 @@ module.exports = (express, app) => {
 
 
 
-    app.use(helmet({
-        crossOriginResourcePolicy: { policy: "cross-origin" }
-    }))
+    app.use(
+        helmet({
+            crossOriginEmbedderPolicy: false,
+
+        })
+    );
     // todo esto siempre antes que las rutas
     // app.use(cors(corsOptions))
     app.use(cors())

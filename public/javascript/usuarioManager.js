@@ -29,9 +29,13 @@ let getFiltersByName = (user) => {
 
 }
 
-let getUserByName = (user) => {
+let getUserByName = async (user) => {
 
-    return Usuario.findOne({ "user": user })
+    console.log(new Date().toLocaleTimeString())
+    const user2 = await Usuario.findOne({ "user": user });
+    console.log(new Date().toLocaleTimeString())
+
+    return user2;
 
 }
 

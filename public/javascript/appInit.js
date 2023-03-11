@@ -22,8 +22,8 @@ module.exports = (express, app) => {
     app.use(express.json({ limit: '50mb' }))
     app.use(express.urlencoded({ extended: true }));
 
-    app.use("/usuario", usuarioRoutes)
-    app.use("/tweet", tweetRoutes)
+    app.use("/api/usuario", usuarioRoutes)
+    app.use("/api/tweet", tweetRoutes)
 
 
 

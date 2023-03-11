@@ -19,7 +19,8 @@ module.exports = (express, app) => {
     app.use(
         helmet({
             crossOriginEmbedderPolicy: false,
-
+            crossOriginResourcePolicy: false,
+            contentSecurityPolicy: false,
         })
     );
     // todo esto siempre antes que las rutas

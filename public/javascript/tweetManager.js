@@ -81,12 +81,17 @@ const getTweetsAfterDate = async (fechaAfter) => {
 
     let fechaAfterLocal
 
+    console.log(typeof fechaAfter)
+    if (!_.isString(fechaAfter) && !_.isNil(fechaAfter)) {
+        fechaAfterLocal = new Date(fechaAfter).toISOString()
+        console.log("b")
 
-    if (fechaAfter == "undefined") {
-        fechaAfterLocal = new Date()
-    } else {
-        fechaAfterLocal = new Date(fechaAfter)
+    } else if (_.isNil(fechaAfter) || fechaAfter == "undefined") {
+        fechaAfterLocal = new Date().toISOString()
+        console.log("a")
     }
+
+    console.log(fechaAfterLocal)
 
     return await Tweet.find({ fecha: { $gt: fechaAfterLocal } }).limit(4).sort({ fecha: -1 }).exec()
 

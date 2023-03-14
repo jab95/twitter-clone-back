@@ -16,6 +16,14 @@ const createTweet = async (texto, foto, usuario) => {
     return file
 
 }
+
+const deleteTweet = async (id) => {
+
+    return await Tweet.deleteOne({ _id: id }).exec()
+
+}
+
+
 const getTweets = async (page) => {
 
 
@@ -37,9 +45,7 @@ const getTweetsByProfile = async (user, page) => {
         sort: { fecha: -1 },
     }
 
-    const a = await Tweet.paginate({ usuario: user }, options);
-
-    return a
+    return await Tweet.paginate({ usuario: user }, options);
 }
 
 const getTweetsBeforeDate = async (fechaBefore) => {
@@ -80,10 +86,9 @@ const getTweetsAfterDate = async (fechaAfter) => {
         fechaAfterLocal = new Date()
     } else {
         fechaAfterLocal = new Date(fechaAfter)
-
     }
 
-    return await Tweet.find({ fecha: { $gt: fechaAfterLocal.toISOString() } }).limit(4).sort({ fecha: -1 }).exec();
+    return await Tweet.find({ fecha: { $gt: fechaAfterLocal.toISOString() } }).limit(4).sort({ fecha: -1 }).exec()
 
 }
 
@@ -100,14 +105,15 @@ const getCountTweets = async () => {
 
 
 module.exports = {
-    createTweet: createTweet,
-    getTweets: getTweets,
-    getTweetsBeforeDate: getTweetsBeforeDate,
-    getTweetsAfterDate: getTweetsAfterDate,
-    getCountTweets: getCountTweets,
-    getTweetsByProfile: getTweetsByProfile,
-    getTweetsAfterDateByUser: getTweetsAfterDateByUser,
-    getTweetsBeforeDateByUser: getTweetsBeforeDateByUser
+    createTweet,
+    getTweets,
+    getTweetsBeforeDate,
+    getTweetsAfterDate,
+    getCountTweets,
+    getTweetsByProfile,
+    getTweetsAfterDateByUser,
+    getTweetsBeforeDateByUser,
+    deleteTweet
 
 }
 

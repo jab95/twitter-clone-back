@@ -92,7 +92,6 @@ router.post("/addImageProfile", uploadProfiles.single("image"), async (req, res,
 
 router.post("/addImageHeader", uploadHeaders.single("image"), async (req, res, next) => {
 
-    console.log("aa")
     res.status(200).json("Imagen adjuntada")
 })
 

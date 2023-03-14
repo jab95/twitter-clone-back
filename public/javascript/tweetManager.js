@@ -88,7 +88,7 @@ const getTweetsAfterDate = async (fechaAfter) => {
         fechaAfterLocal = new Date(fechaAfter)
     }
 
-    return await Tweet.find({ fecha: { $gt: fechaAfterLocal.toISOString() } }).limit(4).sort({ fecha: -1 }).exec()
+    return await Tweet.find({ fecha: { $gt: fechaAfterLocal } }).limit(4).sort({ fecha: -1 }).exec()
 
 }
 

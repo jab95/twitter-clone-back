@@ -2,6 +2,7 @@ const usuarioRoutes = require("../../routes/usuario")
 const tweetRoutes = require("../../routes/tweet")
 const cors = require("cors");
 const helmet = require("helmet")
+const bodyParser = require("body-parser")
 
 
 
@@ -18,6 +19,7 @@ module.exports = (express, app) => {
     // app.use(cors(corsOptions))
     app.use(cors())
     app.use(express.json({ limit: '50mb' }))
+    app.use(bodyParser.json())
     app.use(express.urlencoded({ extended: true }));
 
 

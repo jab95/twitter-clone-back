@@ -28,11 +28,11 @@ router.post("/add", async (req, res, next) => {
     res.status(200).json(tweet)
 })
 
-router.delete("/remove/:id", async (req, res, next) => {
+// router.delete("/remove/:id", async (req, res, next) => {
 
-    let tweet = await tweetManager.deleteTweet(req.params.id);
-    res.status(200).json(tweet)
-})
+//     let tweet = await tweetManager.deleteTweet(req.params.id);
+//     res.status(200).json(tweet)
+// })
 
 router.post("/addImageTweet", upload.single("image"), async (req, res, next) => {
 

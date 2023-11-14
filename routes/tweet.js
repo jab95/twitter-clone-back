@@ -6,10 +6,12 @@ const _ = require("lodash")
 const multer = require("multer")
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images")
+        console.log(file)
+        cb(null, "./images/")
     },
     filename: (req, file, cb) => {
         const fileName = file.originalname
+        console.log(filename)
         cb(null, fileName)
     }
 })

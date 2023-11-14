@@ -2,11 +2,16 @@ const express = require("express");
 const router = express.Router();
 const userManager = require("../public/javascript/usuarioManager");
 const path = require("path")
+const fs = require("fs")
 
 const multer = require("multer")
 var storageProfile = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images/profiles")
+        const dir = "./images/profiles/"
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true })
+        }
+        cb(null, dir)
     },
     filename: (req, file, cb) => {
         const regex = /\?.*$/;
@@ -17,7 +22,11 @@ var storageProfile = multer.diskStorage({
 
 var storageHeader = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "images/headers")
+        const dir = "./images/headers/"
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true })
+        }
+        cb(null, dir)
     },
     filename: (req, file, cb) => {
         const regex = /\?.*$/;

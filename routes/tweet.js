@@ -8,7 +8,7 @@ const multer = require("multer")
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         console.log(file)
-        const dir = "./images/"
+        const dir = "./images"
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true })
         }
@@ -47,9 +47,22 @@ router.delete("/remove/:id", async (req, res, next) => {
 
 router.post("/addImageTweet", upload.single("image"), async (req, res, next) => {
     try {
-        console.log("add imagen")
-        res.status(200).json("Imagen adjuntada")
-        next();
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                // A Multer error occurred when uploading.
+                console.log("err1")
+                res.status(500).send(err);
+            } else if (err) {
+                // An unknown error occurred when uploading.
+                console.log("err2")
+                res.status(500).send(err);
+            }
+
+            // Everything went fine.
+            console.log("add imagen")
+            res.status(200).json("Imagen adjuntada")
+            next();
+        })
     } catch (err) {
         console.log("errrooroorr")
         console.log(err)

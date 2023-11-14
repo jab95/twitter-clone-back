@@ -75,6 +75,7 @@ router.get("/getTweets", async (req, res, next) => {
     let tweets = await tweetManager.getTweets(req.query.page);
 
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getTweetsByProfile", async (req, res, next) => {
@@ -82,6 +83,7 @@ router.get("/getTweetsByProfile", async (req, res, next) => {
     let tweets = await tweetManager.getTweetsByProfile(req.query.user, req.query.page);
 
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getTweetsBeforeDate", async (req, res, next) => {
@@ -89,6 +91,7 @@ router.get("/getTweetsBeforeDate", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweetsBeforeDate(req.query.fecha);
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getTweetsAfterDate", async (req, res, next) => {
@@ -96,6 +99,7 @@ router.get("/getTweetsAfterDate", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweetsAfterDate(req.query.fecha);
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getTweetsBeforeDateByUser", async (req, res, next) => {
@@ -103,6 +107,7 @@ router.get("/getTweetsBeforeDateByUser", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweetsBeforeDateByUser(req.query.fecha, req.query.user);
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getTweetsAfterDateByUser", async (req, res, next) => {
@@ -110,6 +115,7 @@ router.get("/getTweetsAfterDateByUser", async (req, res, next) => {
 
     let tweets = await tweetManager.getTweetsAfterDateByUser(req.query.fecha, req.query.user);
     res.status(200).json(tweets)
+    next()
 })
 
 router.get("/getCountTweets", async (req, res, next) => {
@@ -117,6 +123,7 @@ router.get("/getCountTweets", async (req, res, next) => {
 
     let tweets = await tweetManager.getCountTweets();
     res.status(200).json(tweets)
+    next()
 })
 
 

@@ -2,12 +2,17 @@ const express = require("express");
 const router = express.Router();
 const tweetManager = require("../public/javascript/tweetManager");
 const _ = require("lodash")
+const fs = require("fs")
 
 const multer = require("multer")
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
         console.log(file)
-        cb(null, "./images/")
+        const dir = "./images/"
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir, { recursive: true })
+        }
+        cb(null, dir)
     },
     filename: (req, file, cb) => {
         const fileName = file.originalname
@@ -41,10 +46,16 @@ router.delete("/remove/:id", async (req, res, next) => {
 })
 
 router.post("/addImageTweet", upload.single("image"), async (req, res, next) => {
-
-    console.log("add imagen")
-    res.status(200).json("Imagen adjuntada")
-    next();
+    try {
+        console.log("add imagen")
+        res.status(200).json("Imagen adjuntada")
+        next();
+    } catch (err) {
+        console.log("errrooroorr")
+        console.log(err)
+        res.status(400).send({ message: err.toString() })
+        next()
+    }
 })
 router.get("/getTweets", async (req, res, next) => {
 

@@ -47,22 +47,10 @@ router.delete("/remove/:id", async (req, res, next) => {
 
 router.post("/addImageTweet", upload.single("image"), async (req, res, next) => {
     try {
-        upload(req, res, function (err) {
-            if (err instanceof multer.MulterError) {
-                // A Multer error occurred when uploading.
-                console.log("err1")
-                res.status(500).send(err);
-            } else if (err) {
-                // An unknown error occurred when uploading.
-                console.log("err2")
-                res.status(500).send(err);
-            }
 
-            // Everything went fine.
-            console.log("add imagen")
-            res.status(200).json("Imagen adjuntada")
-            next();
-        })
+        console.log("add imagen")
+        res.status(200).json("Imagen adjuntada")
+        next();
     } catch (err) {
         console.log("errrooroorr")
         console.log(err)

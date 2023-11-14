@@ -7,7 +7,7 @@ const fs = require("fs")
 const multer = require("multer")
 var storageProfile = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = "./images/profiles"
+        const dir = "images/profiles"
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true })
         }
@@ -22,7 +22,7 @@ var storageProfile = multer.diskStorage({
 
 var storageHeader = multer.diskStorage({
     destination: (req, file, cb) => {
-        const dir = "./images/headers"
+        const dir = "images/headers"
         if (!fs.existsSync(dir)) {
             fs.mkdirSync(dir, { recursive: true })
         }

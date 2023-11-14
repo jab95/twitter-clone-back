@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const fileName = file.originalname
-        console.log(filename)
+        console.log(fileName)
         cb(null, fileName)
     }
 })

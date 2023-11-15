@@ -7,6 +7,9 @@ const appDatabase = require("./public/javascript/appDatabase");
 appDatabase.initDatabase();
 
 (async function () {
+
+
+
     app.use("/images", express.static(path.resolve(__dirname, 'images')))
     //el await aqui no se si haria falta
     await require("./public/javascript/appInit")(express, app);

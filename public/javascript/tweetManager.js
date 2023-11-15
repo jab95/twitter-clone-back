@@ -50,50 +50,33 @@ const getTweetsByProfile = async (user, page) => {
 
 const getTweetsBeforeDate = async (fechaBefore) => {
 
-    return await Tweet.find({ fecha: { $lt: new Date(fechaBefore).toISOString() } }).limit(4).sort({ fecha: -1 }).exec();
+    return await Tweet.find({ fecha: { $lt: fechaBefore } }).limit(4).sort({ fecha: -1 }).exec();
 }
 
 const getTweetsBeforeDateByUser = async (fechaBefore, user) => {
 
-    return await Tweet.find({ fecha: { $lt: new Date(fechaBefore).toISOString() }, usuario: user }).limit(4).sort({ fecha: -1 }).exec();
+    return await Tweet.find({ fecha: { $lt: fechaBefore }, usuario: user }).limit(4).sort({ fecha: -1 }).exec();
 }
 
 
 const getTweetsAfterDateByUser = async (fechaAfter, user) => {
 
 
-    let fechaAfterLocal
-
-
     if (fechaAfter == "undefined") {
-        fechaAfterLocal = new Date()
-    } else {
-        fechaAfterLocal = new Date(fechaAfter)
-
+        fechaAfter = new Date().toISOString()
     }
 
-    return await Tweet.find({ fecha: { $gt: fechaAfterLocal.toISOString() }, usuario: user }).limit(4).sort({ fecha: -1 }).exec();
+    return await Tweet.find({ fecha: { $gt: fechaAfter }, usuario: user }).limit(4).sort({ fecha: -1 }).exec();
 
 }
 
 const getTweetsAfterDate = async (fechaAfter) => {
 
-
-    let fechaAfterLocal
-
-    console.log(typeof fechaAfter)
-    if (!_.isString(fechaAfter) && !_.isNil(fechaAfter)) {
-        fechaAfterLocal = new Date(fechaAfter).toISOString()
-        console.log("b")
-
-    } else if (_.isNil(fechaAfter) || fechaAfter == "undefined") {
-        fechaAfterLocal = new Date().toISOString()
-        console.log("a")
+    if (_.isNil(fechaAfter) || fechaAfter == "undefined") {
+        fechaAfter = new Date().toISOString()
     }
 
-    console.log(fechaAfterLocal)
-
-    return await Tweet.find({ fecha: { $gt: fechaAfterLocal } }).limit(4).sort({ fecha: -1 }).exec()
+    return await Tweet.find({ fecha: { $gt: fechaAfter } }).limit(4).sort({ fecha: -1 }).exec()
 
 }
 

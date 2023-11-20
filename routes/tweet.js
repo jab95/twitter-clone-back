@@ -86,6 +86,7 @@ router.get("/getTweetsAfterDate", async (req, res, next) => {
 
 
     let tweets = await tweetManager.getTweetsAfterDate(req.query.fecha);
+    console.log(tweets)
     res.status(200).json(tweets)
     next()
 })
